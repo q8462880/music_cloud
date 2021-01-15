@@ -1,6 +1,6 @@
 # music_cloud
 ## Demo
-![image](https://github.com/q8462880/music_cloud/public/img/demo/demo01.jpg)
+![image](https://github.com/q8462880/music_cloud/blob/master/public/img/demo/demo01.jpg)
 ## Project setup
 ```
 npm install

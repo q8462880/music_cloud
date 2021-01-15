@@ -1,6 +1,6 @@
 # music_cloud
 ## Demo
-<img src="./public/img/demo/demo01.jpg" alt="vue">
+![image](https://github.com/q8462880/music_cloud/blob/master/public/img/demo/demo01.jpg)
 ## Project setup
 ```
 npm install
@@ -8,7 +8,7 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+npm run start
 ```
 
 ### Compiles and minifies for production

@@ -1,6 +1,9 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <div>side bar statu from vuex</div>
+    <span>{{ sideBarOpen }}</span>
+    <button @click="changeSideBar">changeSideBar</button>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
@@ -135,15 +138,24 @@
 </template>
 
 <script lang="ts">
+import component from "*.vue";
+import { AppModule } from "@/store/modules/app";
 import { Options, Vue } from "vue-class-component";
 
 @Options({
   props: {
-    msg: String
-  }
+    msg: String,
+  },
 })
 export default class HelloWorld extends Vue {
   msg!: string;
+  get sideBarOpen() {
+    return AppModule.sideBar.open;
+  }
+
+  private changeSideBar() {
+    AppModule.ToggleSideBar(true);
+  }
 }
 </script>
 

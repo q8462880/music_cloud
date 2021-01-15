@@ -14,7 +14,7 @@ export interface UserState {
 class User extends VuexModule implements UserState {
     //   public token = getToken() || ''
     public name = 'Jeremy';
-    public avatar = 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png';
+    public avatar = 'http://p1.music.126.net/yKm4lyk-NQPDq_DmPOTVzA==/19174383276987846.jpg?param=30y30';
     public introduction = '';
     public roles: string[] = [];
     public email = '';

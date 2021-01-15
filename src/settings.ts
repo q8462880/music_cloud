@@ -1,7 +1,7 @@
-import { IRootState } from "./store";
+import { MyRootState } from "./store";
 import { DeviceType } from "./store/modules/app";
 
-export const appSettings: IRootState = {
+export const appSettings: MyRootState = {
     app: {
         sideBar: {
             open: false,

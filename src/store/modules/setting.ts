@@ -1,6 +1,6 @@
 import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators';
 import store from '@/store';
-export interface ISettingsState {
+export interface MySettingsState {
     // theme: string
     // fixedHeader: boolean
     showSettings: boolean;
@@ -9,7 +9,7 @@ export interface ISettingsState {
     // sidebarTextTheme: boolean
 }
 @Module({ dynamic: true, store, name: 'settings' })
-class Setting extends VuexModule implements ISettingsState {
+class Setting extends VuexModule implements MySettingsState {
     public showSettings = false;
 
     @Mutation
@@ -18,6 +18,16 @@ class Setting extends VuexModule implements ISettingsState {
         if (Object.prototype.hasOwnProperty.call(this, key)) {
             (this as any)[key] = value;
         }
+    }
+
+    @Mutation
+    private CHANGE_SETTING_SHOW() {
+        this.showSettings = !this.showSettings;
+    }
+
+    @Action
+    public ChangeSettingShow() {
+        this.CHANGE_SETTING_SHOW();
     }
 
     @Action

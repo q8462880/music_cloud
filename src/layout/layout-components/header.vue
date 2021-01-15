@@ -14,12 +14,18 @@
       v-model="input2"
     >
     </el-input>
-    <el-button size="medium " icon="el-icon-setting" round></el-button>
+    <el-button
+      size="medium "
+      icon="el-icon-setting"
+      round
+      @click="toogleSetting"
+    ></el-button>
   </div>
 </template>
 
 <script lang="ts">
 import { AppModule } from "@/store/modules/app";
+import { SettingsModule } from "@/store/modules/setting";
 import { Options, Vue } from "vue-class-component";
 @Options({
   name: "Header",
@@ -27,8 +33,15 @@ import { Options, Vue } from "vue-class-component";
 })
 export default class Header extends Vue {
   public input2 = "";
+  get settingOpen() {
+    return SettingsModule.showSettings;
+  }
   private toogleSideBar() {
     AppModule.ToggleSideBar(true);
+  }
+
+  private toogleSetting() {
+    SettingsModule.ChangeSettingShow();
   }
 }
 </script>

@@ -16,6 +16,12 @@
       @click="handleClickOutside"
     ></div>
   </transition>
+  <el-drawer
+    title="设置"
+    :visible="settingOpen"
+  >
+    <span>我来啦!</span>
+  </el-drawer>
 
   <!-- <tool-bar></tool-bar> -->
 </template>
@@ -26,6 +32,7 @@ import SideBar from "@/components/sidebar.vue";
 import Header from "./layout-components/header.vue";
 import Main from "./layout-components/main.vue";
 import Footer from "./layout-components/footer.vue";
+import { SettingsModule } from "@/store/modules/setting";
 @Options({
   name: "Layout",
   components: {
@@ -54,6 +61,10 @@ export default class Layout extends Vue {
 
   get sideBarOpen() {
     return AppModule.sideBar.open;
+  }
+
+  get settingOpen() {
+    return SettingsModule.showSettings;
   }
 
   private handleClickOutside() {

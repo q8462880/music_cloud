@@ -8,12 +8,10 @@
         {{ userName }}
       </div>
     </div>
-    <el-menu-item index="2">
-    </el-menu-item>
-    <el-menu-item index="3" disabled>
-    </el-menu-item>
-    <el-menu-item index="4">
-    </el-menu-item>
+    <div class="content-container">
+      <LikeAnalizy></LikeAnalizy>
+      <el-button class="logout-button">退出登录</el-button>
+    </div>
   </el-menu>
 </template>
 <script lang="ts">
@@ -21,9 +19,12 @@ import { AppModule, DeviceType } from "@/store/modules/app";
 import { UserModule } from "@/store/modules/user";
 import { Options } from "vue-class-component";
 import { Vue } from "vue-class-component";
+import LikeAnalizy from "./likeAnalizy.vue";
 @Options({
   name: "SideBar",
-  components: {},
+  components: {
+    LikeAnalizy,
+  },
 })
 export default class SideBar extends Vue {
   get device() {
@@ -73,5 +74,24 @@ export default class SideBar extends Vue {
 }
 
 .user-avatar-container {
+}
+.content-container {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.logout-button {
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  width: 100%;
+  border: 0 !important;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  color: #8a2828;
+  background-color: #2e2e31 !important;
+  font-weight: 700;
 }
 </style>

@@ -1,6 +1,6 @@
 # music_cloud
 ## Demo
-<img src="https://github.com/q8462880/music_cloud/blob/master/public/img/demo/demo01.png" alt="vue">
+<img src="./public/img/demo/demo01.png" alt="vue">
 ## Project setup
 ```
 npm install

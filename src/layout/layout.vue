@@ -16,10 +16,7 @@
       @click="handleClickOutside"
     ></div>
   </transition>
-  <el-drawer
-    title="设置"
-    :visible="settingOpen"
-  >
+  <el-drawer title="设置" :visible="settingOpen">
     <span>我来啦!</span>
   </el-drawer>
 
@@ -74,7 +71,7 @@ export default class Layout extends Vue {
 </script>
 <style lang="scss" scoped>
 .header-container {
-  height: 50px !important;
+  height: 9vh !important;
 }
 .el-main {
   padding: 10px;
@@ -83,6 +80,7 @@ export default class Layout extends Vue {
   padding: 0 10px;
 }
 .el-footer {
+  height: min-content !important;
   padding: 0 10px;
 }
 .drawer-bg {

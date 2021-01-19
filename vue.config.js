@@ -1,15 +1,27 @@
-// // eslint-disable-next-line @typescript-eslint/no-var-requires
-// const path = require('path')
-
-// // If your port is set to 80,
-// // use administrator privileges to execute the command line.
-// // For example, on Mac: sudo npm run / sudo yarn
-// const devServerPort = 9091 // TODO: get this variable from setting.ts
-// const mockServerPort = 9528 // TODO: get this variable from setting.ts
-// const name = 'Vue cloud music' // TODO: get this variable from setting.ts
-
-// // module.exports = {
-// //     configureWebpack: {
-// //         devtool: 'source-map'
-// //     }
-// // }
+const path = require('path')
+module.exports = {
+    publicPath: '/music_cloud/',
+    devServer: {
+        proxy: {
+            '/cloud': {
+                target: 'http://musicapi.leanapp.cn',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/cloud': ''
+                }
+            },
+            '/song': {
+                target: 'http://api.imjad.cn/cloudmusic/',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/song': ''
+                }
+            },
+            publicPath: './dist/music_cloud',
+        }
+    },
+    // build: {
+    //     index: path.resolve(__dirname, '../music_cloud/index.html'),
+    //     assetsRoot: path.resolve(__dirname, '../music')
+    // }
+}

@@ -10,9 +10,9 @@ export const VueInstance = createApp(App)
     .use(store)
     .use(router)
     .use(ElementPlus)
-    // .use(SvgIcon, {
-    //     tagName: 'svg-icon',
-    //     defaultWidth: '1em',
-    //     defaultHeight: '1em'
-    // });
+    .use(SvgIcon, {
+        tagName: 'svg-icon',
+        defaultWidth: '1em',
+        defaultHeight: '1em'
+    });
 VueInstance.mount("#app");

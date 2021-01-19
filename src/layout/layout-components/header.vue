@@ -11,7 +11,8 @@
       size="medium"
       placeholder="search your songs"
       prefix-icon="el-icon-search"
-      v-model="input2"
+      v-model="inputKeyWord"
+      @keyup.enter.prevent="onkeyWordSearch(inputKeyWord)"
     >
     </el-input>
     <el-button
@@ -26,13 +27,15 @@
 <script lang="ts">
 import { AppModule } from "@/store/modules/app";
 import { SettingsModule } from "@/store/modules/setting";
+import { MyPlayerModule } from "@/store/modules/player";
 import { Options, Vue } from "vue-class-component";
+import { getSongsByKeyWord } from "../../api/music-163/cloudSongs";
 @Options({
   name: "Header",
   components: {},
 })
 export default class Header extends Vue {
-  public input2 = "";
+  public inputKeyWord = "";
   get settingOpen() {
     return SettingsModule.showSettings;
   }
@@ -42,12 +45,26 @@ export default class Header extends Vue {
 
   private toogleSetting() {
     SettingsModule.ChangeSettingShow();
+    MyPlayerModule.setPlayerFooterStatu(true);
+  }
+
+  private onkeyWordSearch(inputKeyWord: string) {
+    console.log("key word" + inputKeyWord);
+    getSongsByKeyWord({
+      text: inputKeyWord,
+      pageNo: 1,
+      pageSize: 10,
+    }).then((rsp: any) => {
+      MyPlayerModule.refreshSongSmallCards(rsp.result.songs);
+    });
+    this.$router.push("player");
   }
 }
 </script>
 
 <style lang="scss">
 .header-container {
+  width: 100%;
   height: 5px;
   display: flex;
   justify-content: space-evenly;

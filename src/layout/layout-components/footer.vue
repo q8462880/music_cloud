@@ -1,4 +1,5 @@
 <template>
+  <audio id="play1" :controls="showPlayerFooter" :src="playerSongUrl"></audio>
   <div class="footer-container border-bottom">
     <div
       v-for="(item, index) in findIcons"
@@ -22,10 +23,13 @@
 </template>
 
 <script lang="ts">
+import { MyPlayerModule } from "@/store/modules/player";
 import { Options, Vue } from "vue-class-component";
+
 @Options({
   name: "Footer",
-  components: {},
+  components: {
+  },
 })
 export default class Footer extends Vue {
   public findIcons = [
@@ -47,10 +51,17 @@ export default class Footer extends Vue {
     {
       text: "播客",
       icon: "el-icon-video-play",
-      linkTo: "live",
+      linkTo: "player",
     },
   ];
 
+  get playerSongUrl() {
+    return MyPlayerModule.currentPlaySongUrl;
+  }
+
+  get showPlayerFooter() {
+    return MyPlayerModule.showPlayerFooter;
+  }
   private switchPage(link: string) {
     this.$router.push(link);
   }
@@ -63,7 +74,7 @@ export default class Footer extends Vue {
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 87%;
+  height: 8vh;
   align-items: center;
   padding: 0.2rem 0 0.3rem;
   .today {

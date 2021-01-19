@@ -3,6 +3,7 @@ import Discover from "../views/discover/discover.vue";
 import MyPage from "../views/my/myPage.vue";
 import Layout from "../layout/layout.vue";
 import SingPage from "../views/sing/singPage.vue";
+import Player from '../views/player/player.vue';
 const routes: Array<RouteRecordRaw> = [
     // {
     //     path: "/",
@@ -44,6 +45,17 @@ const routes: Array<RouteRecordRaw> = [
                 meta: {
                     title: 'SingPage',
                     icon: 'SingPage',
+                    affix: false
+                }
+            },
+            {
+                path: 'player',
+                // component: () => import(/* webpackChunkName: "discover" */ '@/views/discover/discover.vue'),
+                component: Player,
+                name: 'Player',
+                meta: {
+                    title: 'Player',
+                    icon: 'Player',
                     affix: false
                 }
             }

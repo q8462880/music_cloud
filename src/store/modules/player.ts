@@ -14,9 +14,16 @@ class MyPlayer extends VuexModule implements MyPlayerState {
     public songSmallCardInfo = [];
     public currentPlaySongUrl = '';
     public showPlayerFooter = false;
+    public playing = false;
+
     @Mutation
     private SET_PLAYER_FOOTER_STATU(open: boolean) {
         this.showPlayerFooter = open;
+    }
+
+    @Mutation
+    private SET_PLAYER_STATU(open: boolean) {
+        this.playing = open;
     }
 
     @Mutation
@@ -32,6 +39,11 @@ class MyPlayer extends VuexModule implements MyPlayerState {
     @Action
     public setPlayerFooterStatu(open: boolean) {
         this.SET_PLAYER_FOOTER_STATU(open);
+    }
+
+    @Action
+    public setPlayerStatu(open: boolean) {
+        this.SET_PLAYER_STATU(open);
     }
 
     @Action

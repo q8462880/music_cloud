@@ -1,5 +1,10 @@
 <template>
-  <audio id="play1" :controls="showPlayerFooter" :src="playerSongUrl"></audio>
+  <audio
+    id="play1"
+    :controls="showPlayerFooter"
+    :autoplay="playing"
+    :src="playerSongUrl"
+  ></audio>
   <div class="footer-container border-bottom">
     <div
       v-for="(item, index) in findIcons"
@@ -28,8 +33,7 @@ import { Options, Vue } from "vue-class-component";
 
 @Options({
   name: "Footer",
-  components: {
-  },
+  components: {},
 })
 export default class Footer extends Vue {
   public findIcons = [
@@ -62,6 +66,11 @@ export default class Footer extends Vue {
   get showPlayerFooter() {
     return MyPlayerModule.showPlayerFooter;
   }
+
+  get playing() {
+    return MyPlayerModule.playing;
+  }
+
   private switchPage(link: string) {
     this.$router.push(link);
   }

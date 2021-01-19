@@ -11,13 +11,12 @@ module.exports = {
                 }
             },
             '/song': {
-                target: 'http://api.imjad.cn/cloudmusic/',
+                target: 'https://api.imjad.cn/cloudmusic/',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/song': ''
                 }
             },
-            publicPath: './dist/music_cloud',
         }
     },
     // build: {

@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="small-card-container"
-    @click.prevent="playSong(songInfo.id)"
-  >
+  <div class="small-card-container" @click.prevent="playSong(songInfo.id)">
     <div class="left-info">
       <div class="song-info-container">
         <span>{{ songInfo.name }}</span>
@@ -19,6 +16,7 @@
 <script lang="ts">
 import { getSongUrl } from "@/api/music-163/cloudSongs";
 import { MyPlayerModule } from "@/store/modules/player";
+import { SettingsModule } from "@/store/modules/setting";
 import { Options, Vue } from "vue-class-component";
 @Options({
   name: "SongSmallCard",
@@ -30,8 +28,14 @@ export default class SongSmallCard extends Vue {
   private playSong(contentId: string) {
     getSongUrl(contentId).then((data: any) => {
       MyPlayerModule.setCurrentPlaySongUrl(data.data[0].url);
+      this.openPlayer();
     });
-    MyPlayerModule.currentPlaySongUrl;
+  }
+
+  private openPlayer() {
+    SettingsModule.ChangeSettingShow();
+    MyPlayerModule.setPlayerFooterStatu(true);
+    MyPlayerModule.setPlayerStatu(true);
   }
 }
 </script>

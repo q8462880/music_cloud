@@ -2,7 +2,7 @@ import request from '@/utils/request';
 
 export const getSongsByKeyWord = (params: any) =>
     request({
-        url: `/cloud/search?keywords=make%20that%20love`,
+        url: `/cloud/search?keywords=${params.text}`,
         method: 'post',
     });
 

@@ -30,6 +30,7 @@ import { SettingsModule } from "@/store/modules/setting";
 import { MyPlayerModule } from "@/store/modules/player";
 import { Options, Vue } from "vue-class-component";
 import { getSongsByKeyWord } from "../../api/music-163/cloudSongs";
+import { loginCloud } from "@/api/music-163/cloudUser";
 @Options({
   name: "Header",
   components: {},
@@ -49,7 +50,6 @@ export default class Header extends Vue {
   }
 
   private onkeyWordSearch(inputKeyWord: string) {
-    console.log("key word" + inputKeyWord);
     getSongsByKeyWord({
       text: inputKeyWord,
       pageNo: 1,

@@ -1,5 +1,6 @@
 import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators';
 import store from '@/store';
+import { getUserPlayList } from '@/api/music-163/cloudUser';
 
 export interface UserState {
     //   token: string
@@ -13,12 +14,23 @@ export interface UserState {
 @Module({ dynamic: true, store, name: 'user' })
 class User extends VuexModule implements UserState {
     //   public token = getToken() || ''
-    public name = 'Jeremy';
-    public avatar = 'http://p1.music.126.net/yKm4lyk-NQPDq_DmPOTVzA==/19174383276987846.jpg?param=30y30';
+    public name = '请登录';
+    public avatar = '';
     public introduction = '';
     public roles: string[] = [];
     public email = '';
+    public account = {
 
+    };
+    public profile = {
+        nickname: '请登录',
+        avatarUrl: '',
+        userId: 0
+    };
+
+    public playLists = [];
+
+    public dailyRecommand = [];
     //   @Mutation
     //   private SET_TOKEN(token: string) {
     //     this.token = token
@@ -35,13 +47,18 @@ class User extends VuexModule implements UserState {
     }
 
     @Mutation
-    private SET_INTRODUCTION(introduction: string) {
-        this.introduction = introduction;
+    private SET_ACCOUNT(account: any) {
+        this.account = account;
     }
 
     @Mutation
-    private SET_ROLES(roles: string[]) {
-        this.roles = roles;
+    private SET_PROFILE(profile: any) {
+        this.profile = profile;
+    }
+
+    @Mutation
+    private SET_PLAY_LIST(playLists: any) {
+        this.playLists = playLists;
     }
 
     @Mutation
@@ -49,14 +66,26 @@ class User extends VuexModule implements UserState {
         this.email = email;
     }
 
-    //   @Action
-    //   public async Login(userInfo: { username: string, password: string}) {
-    //     let { username, password } = userInfo
-    //     username = username.trim()
-    //     const { data } = await login({ username, password })
-    //     setToken(data.accessToken)
-    //     this.SET_TOKEN(data.accessToken)
-    //   }
+    @Mutation
+    private SET_DAILY_RECOMMAND(dailyRecommand: any) {
+        this.dailyRecommand = dailyRecommand;
+    }
+
+    @Action
+    public saveUserInfo(userInfo: any) {
+        this.SET_ACCOUNT(userInfo.account);
+        this.SET_PROFILE(userInfo.profile);
+    }
+
+    @Action
+    public savePlayList(playLists: any) {
+        this.SET_PLAY_LIST(playLists);
+    }
+
+    @Action
+    public saveDailyRecommand(dailyRecommand: any) {
+        this.SET_DAILY_RECOMMAND(dailyRecommand);
+    }
 
     //   @Action
     //   public ResetToken() {

@@ -5,7 +5,11 @@
         <span>{{ songInfo.name }}</span>
       </div>
       <div class="author-info-container">
-        <span>{{ songInfo.artists[0].name }}</span>
+        <span
+          v-for="artist in (songInfo.artists || songInfo.ar)"
+          :key="artist.name"
+          >{{ artist.name }},</span
+        >
       </div>
     </div>
     <div class="right-info button-container">
@@ -17,6 +21,7 @@
 import { getSongUrl } from "@/api/music-163/cloudSongs";
 import { MyPlayerModule } from "@/store/modules/player";
 import { SettingsModule } from "@/store/modules/setting";
+import { ref } from "vue";
 import { Options, Vue } from "vue-class-component";
 @Options({
   name: "SongSmallCard",
@@ -25,6 +30,13 @@ import { Options, Vue } from "vue-class-component";
   },
 })
 export default class SongSmallCard extends Vue {
+//   get artists() {
+//     const prop: any = this.$props;
+//     const songInfo = prop.songInfo;
+//     const artists =
+//       songInfo.artists === undefined ? songInfo.artists : songInfo.ar;
+//     return artists;
+//   }
   private playSong(contentId: string) {
     getSongUrl(contentId).then((data: any) => {
       MyPlayerModule.setCurrentPlaySongUrl(data.data[0].url);

@@ -1,15 +1,20 @@
 <template>
   <el-menu default-active="2" @open="handleOpen" @close="handleClose">
-    <div class="user-enter-container">
+    <div
+      v-if="!showLoginBlock"
+      class="user-enter-container"
+      @click.prevent="toogleLoginBlock()"
+    >
       <div class="user-avatar-container">
         <el-avatar size="medium" :src="avatar"> </el-avatar>
       </div>
       <div class="user-name-container">
-        {{ userName }}
+        {{ nickname }}
       </div>
     </div>
+    <LoginBlock v-if="showLoginBlock"></LoginBlock>
     <div class="content-container">
-      <LikeAnalizy></LikeAnalizy>
+      <!-- <LikeAnalizy></LikeAnalizy> -->
       <el-button class="logout-button">退出登录</el-button>
     </div>
   </el-menu>
@@ -20,10 +25,12 @@ import { UserModule } from "@/store/modules/user";
 import { Options } from "vue-class-component";
 import { Vue } from "vue-class-component";
 import LikeAnalizy from "./likeAnalizy.vue";
+import LoginBlock from "./loginBlock.vue";
 @Options({
   name: "SideBar",
   components: {
     LikeAnalizy,
+    LoginBlock,
   },
 })
 export default class SideBar extends Vue {
@@ -34,16 +41,24 @@ export default class SideBar extends Vue {
     return AppModule.sideBar;
   }
 
+  get showLoginBlock() {
+    return this.sidebar.showloginblock;
+  }
   get isCollapse() {
     return !this.sidebar.open;
   }
 
-  get userName() {
-    return UserModule.name;
+  get nickname() {
+    return UserModule.profile.nickname;
   }
 
   get avatar() {
-    return UserModule.avatar;
+    return UserModule.profile.avatarUrl;
+  }
+
+  private toogleLoginBlock() {
+    AppModule.ToggleLoginBlock();
+    console.log(AppModule.sideBar.showloginblock);
   }
 }
 </script>
@@ -60,11 +75,12 @@ export default class SideBar extends Vue {
   align-items: center;
   padding: 1rem;
   height: 2.4rem;
+  padding-bottom: 0;
 }
 
 .user-name-container {
   height: 100%;
-  width: 50%;
+  width: 70%;
   color: #fff;
   font-size: 1rem;
   align-items: center;

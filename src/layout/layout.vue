@@ -11,7 +11,7 @@
   </transition>
   <transition name="mask-show">
     <div
-      v-show="device === 0 && sideBarOpen"
+      v-show="sideBarOpen"
       class="drawer-bg"
       @click="handleClickOutside"
     ></div>

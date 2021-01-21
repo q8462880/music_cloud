@@ -1,7 +1,7 @@
 <template>
-  <el-carousel :interval="4000" type="card" height="10rem">
-    <el-carousel-item v-for="item in AlbumPictures" :key="item">
-      <img class="img-album" :alt="item.name" :src="item.url" />
+  <el-carousel v-if="showCarousel" :interval="4000" type="card" :height="carouselHeight">
+    <el-carousel-item v-for="song in dailyRecommand" :key="song.id">
+      <img class="img-album" :alt="song.name" :src="song.picUrl" />
     </el-carousel-item>
   </el-carousel>
   <div class="container border-bottom">
@@ -20,12 +20,24 @@
   </div>
 </template>
 <script lang="ts">
+import { getDailyRecommand } from "@/api/music-163/cloudUser";
+import { AppModule } from "@/store/modules/app";
+import { UserModule } from "@/store/modules/user";
 import { Options, Vue } from "vue-class-component";
 @Options({
   name: "Discover",
   components: {},
 })
 export default class Discover extends Vue {
+  private showCarousel = false;
+  get dailyRecommand() {
+    return UserModule.dailyRecommand;
+  }
+
+  get carouselHeight() {
+    const height = AppModule.device === 0 ? "10rem" : "20rem";
+    return height;
+  }
   public AlbumPictures = [
     {
       name: "testtt",
@@ -66,12 +78,19 @@ export default class Discover extends Vue {
       linkTo: "live",
     },
   ];
+
+  created() {
+    getDailyRecommand().then((rsp: any) => {
+      UserModule.saveDailyRecommand(rsp.recommend);
+      this.showCarousel = true;
+    });
+  }
 }
 </script>
 <style lang="scss">
 .img-album {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 .el-carousel__item h3 {
   color: #475669;

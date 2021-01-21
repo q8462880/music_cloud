@@ -1,20 +1,20 @@
 import request from '@/utils/request';
 
-export const getSongsByKeyWord = (params: any) =>
+export const loginCloud = (params: any) =>
     request({
-        url: `/cloud/search?keywords=${params.text}`,
+        url: `/cloud/login/cellphone?phone=${params.telePhone}&password=${params.passWord}`,
         method: 'post',
     });
 
-export const getSongUrl = (contentId: string) =>
+export const getUserPlayList = (uid: number) =>
     request({
-        url: `/song?type=song&id=${contentId}`,
+        url: `/cloud/user/playlist?uid=${uid}`,
         method: 'post',
     });
 
-export const getSongsByPlayListId = (id: number) =>
+export const getDailyRecommand = () =>
     request({
-        url: `/cloud/playlist/detail?id=${id}`,
+        url: `/cloud/recommend/resource`,
         method: 'post',
     });
 

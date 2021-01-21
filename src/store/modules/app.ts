@@ -11,6 +11,7 @@ export enum DeviceType {
 export interface SideBar {
     open: boolean;
     hasAnimation: boolean;
+    showloginblock: boolean;
 }
 export interface MyAppState {
     sideBar: SideBar;
@@ -22,7 +23,8 @@ export interface MyAppState {
 class App extends VuexModule implements MyAppState {
     public sideBar = {
         open: false,
-        hasAnimation: false
+        hasAnimation: false,
+        showloginblock: false
     };
     public device = DeviceType.Mobile;
     public language = 'en';
@@ -32,6 +34,11 @@ class App extends VuexModule implements MyAppState {
     private TOGGLE_SIDEBAR(withoutAnimation: boolean) {
         this.sideBar.open = !this.sideBar.open;
         this.sideBar.hasAnimation = withoutAnimation;
+    }
+
+    @Mutation
+    private TOGGLE_LOGIN_BLOCK() {
+        this.sideBar.showloginblock = !this.sideBar.showloginblock;
     }
 
     @Mutation
@@ -58,6 +65,11 @@ class App extends VuexModule implements MyAppState {
     @Action
     public ToggleSideBar(withoutAnimation: boolean) {
         this.TOGGLE_SIDEBAR(withoutAnimation);
+    }
+
+    @Action
+    public ToggleLoginBlock() {
+        this.TOGGLE_LOGIN_BLOCK();
     }
 
     @Action

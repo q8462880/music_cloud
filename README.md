@@ -1,7 +1,7 @@
 # music_cloud
+http://121.36.214.69
 ## Demo
 ![image](https://github.com/q8462880/music_cloud/blob/master/public/img/demo/demo01.jpg)
-http://121.36.214.69
 ## Project setup
 ```
 npm install

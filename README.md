@@ -1,5 +1,5 @@
 # music_cloud
-music.xiqucc.com
+http://music.xiqucc.com/
 ## Demo
 ![image](https://github.com/q8462880/music_cloud/blob/master/public/img/demo/demo01.jpg)
 ## Project setup
